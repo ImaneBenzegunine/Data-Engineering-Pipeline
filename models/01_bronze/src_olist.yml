@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: airbyte_raw
+    schema: public  # Schema where Airbyte dropped the tables
+    tables:
+      - name: olist_orders_dataset
+      - name: olist_customers_dataset
+      - name: olist_products_dataset

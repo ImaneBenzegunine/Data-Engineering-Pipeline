@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  airbyte-db:
+    image: postgres:13
+    container_name: airbyte-db
+    environment:
+      POSTGRES_USER: airbyte
+      POSTGRES_PASSWORD: airbyte
+      POSTGRES_DB: airbyte
+    volumes:
+      - airbyte_db:/var/lib/postgresql/data
+
+  airbyte:
+    image: airbyte/airbyte:0.49.5-alpha
+    container_name: airbyte
+    ports:
+      - "8000:8000"   # UI + API
+    environment:
+      DATABASE_HOST: airbyte-db
+      DATABASE_PORT: 5432
+      DATABASE_USER: airbyte
+      DATABASE_PASSWORD: airbyte
+      DATABASE_DB: airbyte
+    depends_on:
+      - airbyte-db
+    volumes:
+      - ../data/kaggle:/local-files
+
+volumes:
+  airbyte_db:

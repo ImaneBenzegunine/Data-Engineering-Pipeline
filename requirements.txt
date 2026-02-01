@@ -1,0 +1,5 @@
+pip install airbyte
+pip install kaggle
+#kaggle --version
+
+
