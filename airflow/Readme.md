@@ -1,37 +1,19 @@
-problems of airflow
-1️⃣ Why This Happens (So You Understand)
 
-Even though we ran:
+Airflow — Admin Recovery & Quick Start
 
-airflow users create ...
+- **Symptom:** unable to log in to the Airflow UI even after running user creation commands.
 
+Why this happens
 
-Sometimes:
+- DB migrations can finish after the user creation command runs, or the command can silently fail. The result is an admin user that either doesn't exist or has no saved password.
 
-The DB migration finishes after user creation
+Fix: create or reset admin user inside the Airflow container
 
-The command silently fails
-
-The user exists but password wasn’t saved
-
-➡ Result: Invalid login, even with correct credentials.
-
-This is very common.
-
-2️⃣ DEFINITIVE FIX (100% WORKS)
-
-We will manually create/reset the admin user inside the container.
-
-✅ Step 1 — Enter the Airflow container
+```bash
+# enter the running airflow container (compose name may differ)
 docker exec -it airflow bash
 
-
-You should now be inside the container.
-
-✅ Step 2 — Create (or reset) the admin user
-
-Run exactly this:
-
+# create or reset the admin user inside the container
 airflow users create \
   --username admin \
   --password admin \
@@ -40,15 +22,17 @@ airflow users create \
   --role Admin \
   --email admin@test.com
 
-
-If it says the user already exists → that’s fine
-If it succeeds → even better
-
-✅ Step 3 — Exit the container
 exit
+```
 
-3️⃣ Try Logging In Again
+- Then open the UI at: http://localhost:8080
 
-Open:
+Quick start (if using Compose)
 
-http://localhost:8080
+```powershell
+cd airflow
+docker compose up -d
+```
+
+If problems persist: check scheduler and webserver logs inside the container and ensure the metadata DB migrated successfully.
+  --firstname Admin \

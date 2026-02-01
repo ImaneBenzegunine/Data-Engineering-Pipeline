@@ -1,3 +1,26 @@
+Models & Layers (dbt)
+
+This project follows a common layered approach:
+
+- **Source:** raw input (Airbyte, local CSVs)
+- **Bronze:** raw tables with load timestamps (traceability)
+- **Silver:** cleaned and typed staging tables
+- **Gold:** analytics-ready models (facts/dimensions)
+
+Why this matters
+
+- Lineage: you can trace any dashboard row back to the gold → silver → bronze → source.
+
+Running dbt (example)
+
+```bash
+# from the dbt project root
+dbt deps
+dbt seed   # if seeds exist
+dbt run
+dbt test
+```
+
 Layer	Responsibility	Input	Output
 Source-	External Reality	-Airbyte/Kaggle-	Raw Tables
 Bronze-	Traceability	-Source           -	Tables + Load Timestamps
