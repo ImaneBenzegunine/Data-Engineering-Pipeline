@@ -11,7 +11,7 @@ Setup (Windows)
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+venv\Scripts\activate
 ```
 
 - Install Python dependencies:

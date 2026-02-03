@@ -42,3 +42,13 @@ Airbyte’s docs suggest installing and running Airbyte locally using their CLI 
 winget install Airbyte.abctl ## did not work
 abctl local install
 
+
+
+
+abctl local credentials
+Retrieving your credentials from 'airbyte-auth-secrets'
+INFO    Credentials:
+            Email: benzegunineimane@gmail.com
+            Password: KEUM3UlMXmAC6OUxGOMeqa9xdyoNHBdN
+            Client-Id: 2a14e0ed-825c-4207-a92f-1d22d2580516
+            Client-Secret: e7oiRhIl0s4WkquMbWlw398xcwYJ5AK4

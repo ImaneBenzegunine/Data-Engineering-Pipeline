@@ -1,11 +1,11 @@
-#FROM apache/airflow:latest
-FROM apache/airflow:2.8.1
+FROM apache/airflow:2.7.1-python3.9
 
 USER root
-
-# Ensure scripts can be executed
-RUN mkdir -p /opt/airflow/scripts
-COPY create_admin_user.sh /opt/airflow/scripts/
-RUN chmod +x /opt/airflow/scripts/create_admin_user.sh
+# Install Java 17 (Required for PySpark 4.0+)
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk && \
+    apt-get clean
 
 USER airflow
+# Install PySpark
+RUN pip install pyspark

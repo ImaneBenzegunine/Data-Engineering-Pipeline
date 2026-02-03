@@ -36,3 +36,22 @@ docker compose up -d
 
 If problems persist: check scheduler and webserver logs inside the container and ensure the metadata DB migrated successfully.
   --firstname Admin \
+
+
+
+
+
+
+
+
+
+
+
+
+
+with spark : 
+docker compose up --build -d;
+airflow db init
+
+
+docker exec -it airflow_webserver airflow users create --username admin --firstname Imane --lastname B --role Admin --email admin@example.com --password admin

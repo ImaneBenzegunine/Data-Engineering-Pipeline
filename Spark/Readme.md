@@ -1,0 +1,1 @@
+spark-submit --packages org.postgresql:postgresql:42.7.3 ingest.py
